@@ -1,0 +1,99 @@
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<style>
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+[class|="confetti"] {
+  position: absolute;
+}
+
+.red {
+  background-color: #E94A3F;
+}
+
+.yellow {
+  background-color: #FAA040;
+}
+
+.blue {
+  background-color: #5FC9F5;
+}
+</style>
+<body>
+	<div class="wrapper container" style="margin-top:50px">
+    <div>
+      <img src=static/you_rein_c_.png height=40px style="margin-top:60px">
+      <img align=right src=static/IncLogoNew.png height=100px>
+      <p>Dear _______,</p>
+      <p>Congratulations and welcome to HW Inc. We’ve selected you among a group of deeply talented, passionate, and ambitious individuals because we are confident you will succeed in our rigorous curriculum and are thrilled by the new perspectives and ideas you will bring to the program. We were impressed with your application and are pleased to welcome you this June 10th through 15th.</p>
+      <p>As a student participant in Inc you will be exposed to superstar alumni, brilliant coaches, and like-minded students in an entrepreneurship program the likes of which cannot be found anywhere else in the nation. The Inc experience is one of intellectual rigor, one-on-one attention, countless learning opportunities, and an electric, passionate, and profoundly exciting air that participants remark makes for a deeply fun week. It is our pleasure to welcome you to HW Inc.</p>
+      <p>The HW Inc Team<br>Jakob Amster ’19, Alex Chon ’21, Jonathan Damico ’18, Will Farhat ’21, Lucas Gelfond ’19, Coco Kaleel ’20, Tyler Kim ’20, Emma Limor ’21, Justin Park ’20, Jacky Zhang ’21 </p>
+    </div>
+  </div>
+</body>
+<script>
+for (var i = 0; i < 200; i++) {
+  create(i);
+}
+
+function create(i) {
+  var width = Math.random() * 8;
+  var height = width * 0.4;
+  var colourIdx = Math.ceil(Math.random() * 3);
+  var colour = "red";
+  switch(colourIdx) {
+    case 1:
+      colour = "yellow";
+      break;
+    case 2:
+      colour = "blue";
+      break;
+    default:
+      colour = "red";
+  }
+  $('<div class="confetti-'+i+' '+colour+'"></div>').css({
+    "width" : width+"px",
+    "height" : height+"px",
+    "top" : -Math.random()*20+"%",
+    "left" : Math.random()*100+"%",
+    "opacity" : Math.random()+0.5,
+    "transform" : "rotate("+Math.random()*360+"deg)"
+  }).appendTo('.wrapper');  
+  
+  drop(i);
+}
+
+function drop(x) {
+  $('.confetti-'+x).animate({
+    top: "100%",
+    left: "+="+Math.random()*15+"%"
+  }, Math.random()*3000 + 3000, function() {
+    reset(x);
+  });
+}
+
+function reset(x) {
+  $('.confetti-'+x).animate({
+    "top" : -Math.random()*20+"%",
+    "left" : "-="+Math.random()*15+"%"
+  }, 0, function() {
+    drop(x);             
+  });
+}
+</script>
