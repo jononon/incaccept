@@ -11,12 +11,11 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
-  overflow: hidden;
 }
 
 .wrapper {
+  width:100%;
   position: relative;
-  min-height: 100vh;
 }
 
 [class|="confetti"] {
@@ -36,20 +35,57 @@ body {
 }
 </style>
 <body>
-	<div class="wrapper container" style="margin-top:50px">
+  <div id=button class=container style="margin-top:50px;">
+    <center><a class="btn btn-danger" onclick="view()" href="#" role="button" style="background-color: rgb(218, 0, 22);border-color: rgb(218, 0, 22);">View your Decision</a></center>
+  </div>
+	<div id=main class="wrapper container" style="margin-top:50px;display:none;">
     <div>
       <img src=static/you_rein_c_.png height=40px style="margin-top:60px">
       <img align=right src=static/IncLogoNew.png height=100px>
-      <p>Dear _______,</p>
+      <p></p>
+      <p id=name>Hey!</p>
       <p>Congratulations and welcome to HW Inc. We’ve selected you among a group of deeply talented, passionate, and ambitious individuals because we are confident you will succeed in our rigorous curriculum and are thrilled by the new perspectives and ideas you will bring to the program. We were impressed with your application and are pleased to welcome you this June 10th through 15th.</p>
       <p>As a student participant in Inc you will be exposed to superstar alumni, brilliant coaches, and like-minded students in an entrepreneurship program the likes of which cannot be found anywhere else in the nation. The Inc experience is one of intellectual rigor, one-on-one attention, countless learning opportunities, and an electric, passionate, and profoundly exciting air that participants remark makes for a deeply fun week. It is our pleasure to welcome you to HW Inc.</p>
-      <p>The HW Inc Team<br>Jakob Amster ’19, Alex Chon ’21, Jonathan Damico ’18, Will Farhat ’21, Lucas Gelfond ’19, Coco Kaleel ’20, Tyler Kim ’20, Emma Limor ’21, Justin Park ’20, Jacky Zhang ’21 </p>
+      <p><img width=300px src=static/giphy.gif></p>
+      <p>The HW Inc Team<br>Jakob Amster ’19, Alex Chon ’21, Jonathan Damico ’18, Will Farhat ’21, Lucas Gelfond ’19, Coco Kaleel ’20, Tyler Kim ’20, Emma Limor ’21, Justin Park ’20, Jacky Zhang ’21</p>
     </div>
   </div>
 </body>
 <script>
-for (var i = 0; i < 200; i++) {
-  create(i);
+
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+function rot13(str) {
+  var input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  var output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  var index     = x => input.indexOf(x);
+  var translate = x => index(x) > -1 ? output[index(x)] : x;
+  return str.split('').map(translate).join('');
+}
+
+$("#name").html("Dear "+rot13(getUrlParameter('name'))+",");
+
+function view() {
+  $("#button").hide();
+  for (var i = 0; i < 200; i++) {
+    create(i);
+  }
+  $("#main").fadeIn();
+  var audio = new Audio('static/song.mp3');
+  audio.play();
 }
 
 function create(i) {
