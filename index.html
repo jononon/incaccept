@@ -57,6 +57,7 @@ body {
       <h4 style="font-size:3.2vh;">Next Steps</h4>
       <p>We can't wait to see you this summer! If you will be joining us, please continue registration at <a href=https://hw.campbrainregistration.com/>hw.campbrainregistration.com</a>. The dates for the program are June 10-15 and we can be found under the "Coldwater Prep" section of the website. If you have any questions, feel free to text us or leave a message at <a href=sms:+14244049462>(424) 40-HWINC</a> or <a href=mailto:jdamico1@hwemail.com?cc=lgelfond1@hwemail.com>email us</a>!</p>
       <p>If you can't make it, please let us know by texting or leaving a message at <a href=sms:+14244049462>(424) 40-HWINC</a> or by <a href=mailto:jdamico1@hwemail.com?cc=lgelfond1@hwemail.com>emailing us</a>. We're sorry that it hasn't worked out and would love to invite you to apply next year!</p>
+      <p class="text-right" style="font-size:1.5vh;">Designed by Jonathan Damico ’19</p>
     </div>
   </div>
 </body>
@@ -129,8 +130,12 @@ function drop(x) {
     top: "100%",
     left: "+="+Math.random()*15+"%"
   }, Math.random()*3000 + 3000, function() {
+    if($('.confetti-'+x).css("left")>$(document).width()) {
+      $('.confetti-'+x).css("left",$(document).width()-20);
+    }
     reset(x);
   });
+  
 }
 
 function reset(x) {
